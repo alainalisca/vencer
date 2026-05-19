@@ -37,13 +37,13 @@ export const CASE_STUDIES: CaseStudy[] = [
     liveUrl: 'https://laprofevero.com',
   },
   {
-    slug: 'jay-essentials',
-    title: 'Jay Essentials',
-    tag: 'Multi-page',
-    blurb: 'Multi-page vending-services site built to rank locally and convert facility-manager inquiries with real service-area depth.',
-    blurbLong: 'A multi-page vending-services site built to rank locally and convert facility-manager inquiries with real service-area depth.',
-    image: '/images/jayessentials.jpg',
-    liveUrl: 'https://jayessentials.co',
+    slug: 'blue-chip-staffing',
+    title: 'Blue Chip Staffing',
+    tag: 'B2B Staffing',
+    blurb: 'Premier nationwide staffing firm — contract, contract-to-hire, payrolling, direct hire, and executive search. Multi-page site with deep service-line architecture.',
+    blurbLong: 'A premier nationwide staffing firm offering contract, contract-to-hire, payrolling, direct hire, and executive search. Multi-page build with deep service-line architecture, refined typography, and a confident B2B-services aesthetic that prequalifies inbound before the sales call.',
+    image: 'https://bluechipstaff.com/images/og/og-default.jpg',
+    liveUrl: 'https://www.bluechipstaff.com',
   },
 ]
 
