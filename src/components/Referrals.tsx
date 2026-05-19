@@ -34,14 +34,18 @@ export default function Referrals() {
     e.preventDefault()
     setStatus('loading')
     const form = e.currentTarget
-    const formData = new FormData(form)
+    const fd = new FormData(form)
     try {
-      const response = await fetch('https://formspree.io/f/maqaqejd', {
-        method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' },
+      const { createSubmission } = await import('@/lib/actions/submissions')
+      const result = await createSubmission({
+        type: 'referral',
+        name: String(fd.get('referrerName') ?? ''),
+        email: String(fd.get('referrerEmail') ?? ''),
+        prospectName: String(fd.get('prospectName') ?? ''),
+        prospectContact: String(fd.get('prospectContact') ?? ''),
+        message: String(fd.get('context') ?? ''),
       })
-      if (response.ok) {
+      if (result.ok) {
         setStatus('success')
         form.reset()
       } else {

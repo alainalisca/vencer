@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import PostHogProvider from '@/components/PostHogProvider'
 
 export const metadata: Metadata = {
   title: {
@@ -49,7 +50,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://vencer.dev" />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <PostHogProvider>{children}</PostHogProvider>
+      </body>
     </html>
   )
 }

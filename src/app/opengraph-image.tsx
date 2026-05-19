@@ -6,18 +6,19 @@ export const alt = 'Vencer — Custom Websites & Web Applications'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-// Fetch Cormorant Garamond from Google Fonts at runtime so the OG card
-// matches the site's display typography. Falls back to system serif
-// if the fetch fails.
+// Load Cormorant Garamond from a font file bundled in the repo.
+// `next/og` (Satori) only renders fonts that are explicitly provided —
+// CSS keywords like `serif` are ignored and silently fall back to its
+// built-in sans-serif (Inter). Fetching the font from Google at edge
+// runtime worked most of the time but failed often enough that social
+// card crawlers (iMessage, Slack, X) cached the sans-serif fallback
+// and pinned the wrong wordmark on link previews. Bundling the .ttf
+// makes the load deterministic — no network, no cold-start timeouts.
 async function loadCormorant() {
   try {
-    const css = await fetch(
-      'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap',
-      { headers: { 'User-Agent': 'Mozilla/5.0' } }
-    ).then((r) => r.text())
-    const match = css.match(/src: url\((https:\/\/[^)]+\.woff2)\)/)
-    if (!match) return null
-    const buf = await fetch(match[1]).then((r) => r.arrayBuffer())
+    const buf = await fetch(
+      new URL('./fonts/CormorantGaramond-Medium.ttf', import.meta.url)
+    ).then((r) => r.arrayBuffer())
     return buf
   } catch {
     return null

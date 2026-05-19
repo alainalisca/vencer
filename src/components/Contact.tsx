@@ -16,14 +16,18 @@ export default function Contact({ variant = 'home-teaser' }: Props) {
     e.preventDefault()
     setStatus('loading')
     const form = e.currentTarget
-    const formData = new FormData(form)
+    const fd = new FormData(form)
     try {
-      const response = await fetch('https://formspree.io/f/maqaqejd', {
-        method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' },
+      const { createSubmission } = await import('@/lib/actions/submissions')
+      const result = await createSubmission({
+        type: 'contact',
+        name: String(fd.get('name') ?? ''),
+        email: String(fd.get('email') ?? ''),
+        phone: fd.get('phone') ? String(fd.get('phone')) : undefined,
+        projectType: fd.get('projectType') ? String(fd.get('projectType')) : undefined,
+        message: String(fd.get('message') ?? ''),
       })
-      if (response.ok) {
+      if (result.ok) {
         setStatus('success')
         form.reset()
       } else {
