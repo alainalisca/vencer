@@ -29,10 +29,12 @@ const TIERS = [
 
 export default function Referrals() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setStatus('loading')
+    setErrorMsg(null)
     const form = e.currentTarget
     const fd = new FormData(form)
     try {
@@ -49,9 +51,11 @@ export default function Referrals() {
         setStatus('success')
         form.reset()
       } else {
+        setErrorMsg(result.error)
         setStatus('error')
       }
     } catch {
+      setErrorMsg('Network error — please try again, or email alain@vencer.dev directly.')
       setStatus('error')
     }
   }
@@ -173,7 +177,7 @@ export default function Referrals() {
                 )}
                 {status === 'error' && (
                   <p style={{ color: '#fda4af', textAlign: 'center', marginTop: 18 }}>
-                    Something went wrong. Please try again or email alain@vencer.dev directly.
+                    {errorMsg ?? 'Something went wrong. Please try again or email alain@vencer.dev directly.'}
                   </p>
                 )}
               </form>
