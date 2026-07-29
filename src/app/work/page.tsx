@@ -8,7 +8,7 @@ import Reveal from '@/components/Reveal'
 
 export const metadata: Metadata = {
   title: 'Work',
-  description: 'Selected case studies from Vencer: Tribe (mobile app), Alisca Law (virtual firm), La Profe Vero (bilingual booking), Jay Essentials (multi-page services).',
+  description: 'Selected case studies from Vencer: Tribe (mobile app), Alisca Law (virtual firm), La Profe Vero (bilingual booking), Blue Chip Staffing (nationwide staffing).',
 }
 
 export default function WorkPage() {
@@ -20,7 +20,7 @@ export default function WorkPage() {
         bgImage="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=2000&q=70&auto=format&fit=crop"
         eyebrow="Selected Work"
         title={<>Four projects.<br />Four different problems.<br /><em>One standard.</em></>}
-        lead={<>A peer-to-peer fitness app. A virtual law firm. A bilingual tutor&apos;s booking site. A multi-borough vending business. Every brief is different — the standard isn&apos;t.</>}
+        lead={<>A peer-to-peer fitness app. A virtual law firm. A bilingual tutor&apos;s booking site. A nationwide staffing build. Every brief is different — the standard isn&apos;t.</>}
         crumbs={[{ label: 'Home', href: '/' }, { label: 'Work' }]}
       />
 
